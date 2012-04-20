@@ -2,19 +2,16 @@
 
     require "i18n.php";
 
+    define( "_DEFAULT_LANG_", "es_ES" );
+
     //Sets the language
-    if (isset($_GET['lang']))
+    if ( isset ( $_GET['lang'] ) )
         $lang = $_GET['lang'];
     else
-        $lang = "es_ES";
+        $lang = _DEFAULT_LANG_;
 
     //Creates an internationalization object
-    $i18n = new i18n();
-
-    //Init the internationalization objetc
-    $i18n
-        ->init($lang, "hola")
-        ->addtextdomain("hola", "/locale/");
+    $i18n = new i18n ( $lang );
 
 
 ?><!DOCTYPE html>
@@ -37,27 +34,20 @@
 <body>
 
     <aside>
-        <a href = "?lang=es_ES">ES</a> |
-        <a href = "?lang=en_UK">EN</a> |
-        <a href = "?lang=fr_FR">FR</a> |
-        <a href = "?lang=zh_CN">中文</a>
+        <a href = "?lang=es_ES">es_ES</a> |
+        <a href = "?lang=en_UK">en_UK</a> |
+        <a href = "?lang=fr_FR">fr_FR</a> |
+        <a href = "?lang=zh_CN">中文</a>  |
+
+        <a href = "?lang=en">en</a> |
+        <a href = "?lang=es">es</a>
     </aside>
 
     <h1>PHP / i18n</h1>
 
 
 
-    <?php printf("<p>%s</p>", $i18n->_("Hello, world")); ?>
-
-
-    <h1>Debug</h1>
-
-    <?php
-        var_dump($i18n);
-
-
-    ?>
-
+    <?php printf($i18n->_("Hello, world")); ?>
 
 
 </body>
