@@ -22,10 +22,29 @@ Author URI: http://blog.gotardo.es
 
     class i18n {
 
+        /**
+         * Default language
+         *
+         * @var string
+         */
 
-        private $default_lang;          //Default language
-        private $default_textdomain;    //Default text domain
-        private $domains;               //Array for other domains
+        private $default_lang;
+
+        /**
+         * Default text domain
+         *
+         * @var string
+         */
+
+        private $default_textdomain;
+
+        /**
+         * All the domains to be used
+         *
+         * @var string
+         */
+
+        private $domains;
 
         public function __construct(){
             $this->domains = array();
@@ -61,22 +80,6 @@ Author URI: http://blog.gotardo.es
 
         //Searchs and returns the translation for the given text and domain
         public function _($label, $domain = null){
-
-            /*
-             *
-             *
-            if (isset($domain)) {
-                textdomain($domain);
-                $trad = gettext($label);
-                textdomain($this->default_textdomain);
-            }
-            else {
-                $trad = gettext($label);
-
-            }
-
-            */
-
             $trad = _($label);
             return $trad;
 
