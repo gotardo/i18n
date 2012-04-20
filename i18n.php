@@ -77,7 +77,7 @@
             $this->default_lang         = setlocale(LC_ALL, $language);
 
             //Binds the default text domain
-            bindtextdomain($default_textdomain, "./locale");
+            bindtextdomain($default_textdomain, "./locale/");
             $this->default_textdomain   = $default_textdomain;
 
             //Sets the default text domain
