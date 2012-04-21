@@ -99,7 +99,7 @@
 
                 // our new unique .MO file
                 $mtime = filemtime($mo_file);
-                echo $mo_file_new =  _DEFAULT_LOCALE_DIR_ . "/$language/LC_MESSAGES/{$default_textdomain}_{$mtime}.mo";
+                $mo_file_new =  _DEFAULT_LOCALE_DIR_ . "/$language/LC_MESSAGES/{$default_textdomain}_{$mtime}.mo";
 
                 if (!file_exists($mo_file_new)) {  // check if we have created it before
                     // if not, create it now, by copying the original
