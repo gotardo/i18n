@@ -1,17 +1,44 @@
 <?php
 
+    define( "_DEFAULT_LANG_", "es_ES" );
+    define ("_DEFAULT_LOCALE_DIR_", "locale");
+
     require "i18n.php";
 
-    define( "_DEFAULT_LANG_", "es_ES" );
 
-    //Sets the language
-    if ( isset ( $_GET['lang'] ) )
-        $lang = $_GET['lang'];
-    else
-        $lang = _DEFAULT_LANG_;
+
+    switch($_GET['lang']){
+
+        case "es_AR":
+        case "es_CH":
+        case "es_ES":
+            $lang = "es_ES";
+        break;
+
+        case "en_EN":
+        case "en_UK":
+        case "en_US":
+            $lang = "en_UK";
+        break;
+
+        case "fr_FR":
+            $lang = "fr_FR";
+        break;
+
+        case "zh_CN":
+            $lang = "zh_CN";
+            break;
+
+        default:
+            $lang = _DEFAULT_LANG_;
+        break;
+    }
 
     //Creates an internationalization object
     $i18n = new i18n ( $lang );
+
+    //Avoids Apache Cache (useful for )
+    $i18n->avoidCache();
 
 
 ?><!DOCTYPE html>
@@ -26,8 +53,10 @@
         }
 
         aside {
-            float: right;
+            float: right; color: #333;
         }
+
+        a {text-decoration: none; color: #399;}
     </style>
 </head>
 
@@ -37,17 +66,24 @@
         <a href = "?lang=es_ES">es_ES</a> |
         <a href = "?lang=en_UK">en_UK</a> |
         <a href = "?lang=fr_FR">fr_FR</a> |
-        <a href = "?lang=zh_CN">中文</a>  |
-
-        <a href = "?lang=en">en</a> |
-        <a href = "?lang=es">es</a>
+        <a href = "?lang=zh_CN">中文</a>
     </aside>
 
     <h1>PHP / i18n</h1>
 
 
+    <div>
+        <?php printf($i18n->_("Hello, world")); ?>
+    </div>
+    <div>
+        <?php printf(ngettext("%s duck", "%s ducks", 0), 0); ?>
 
-    <?php printf($i18n->_("Hello, world")); ?>
+    </div>
+
+    <h1>Object debug</h1>
+
+    <?php var_dump($i18n); ?>
+
 
 
 </body>
